@@ -93,9 +93,11 @@
             setupNavBar();
 
             this.orientationSensor = Windows.Devices.Sensors.SimpleOrientationSensor.getDefault();
-            this.orientationSensor.onorientationchanged = function (e) {
-                updateOrientation(e.orientation);
-            };
+            if (this.orientationSensor) {
+                this.orientationSensor.onorientationchanged = function (e) {
+                    updateOrientation(e.orientation);
+                };
+            }
 
             WAT.options.webView.addEventListener("MSWebViewDOMContentLoaded", setStickyBits);
         },
@@ -244,7 +246,7 @@
             }
 
             if (WAT.config.appBar && WAT.config.appBar.enabled && WAT.options.appBar) {
-                if (isPortrait(this.orientationSensor.getCurrentOrientation())) {
+                if (!this.orientationSensor || isPortrait(this.orientationSensor.getCurrentOrientation())) {
                     WAT.options.appBar.winControl.disabled = false;
                 }
             }
@@ -865,12 +867,10 @@
                     WAT.goToLocation(WAT.config.baseUrl);
                     break;
                 case "eval":
-                   //OBrown modified to make Nav Menu code work
-                   var funcName = invokedItem.data.data != null ? invokedItem.data.data : invokedItem.data.section;
-                   var scriptString = "(function() { " + funcName + " })();";
-                   var exec = WAT.options.webView.invokeScriptAsync("eval", scriptString);
-                   exec.start();
-                   break;
+                    var scriptString = "(function() { " + invokedItem.data.data + " })();";
+                    var exec = WAT.options.webView.invokeScriptAsync("eval", scriptString);
+                    exec.start();
+                    break;
                 case "back":
                     WAT.options.webView.goBack();
                     break;

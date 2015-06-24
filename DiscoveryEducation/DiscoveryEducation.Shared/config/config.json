@@ -102,13 +102,13 @@
                 "label": "Welcome",
                 "icon": "home",
 				"action": "eval",
-                "section": "showWelcome()"
+                "data": "showWelcome()"
             },
 			{
                 "label": "Assignments",
                 "icon": "page",
 				"action": "eval",
-                "section": "showAssignments();"
+                "data": "showAssignments();"
             },
             {
                 "label": "Log Out",
