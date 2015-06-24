@@ -3,11 +3,11 @@
     "start_url": "https://app.discoveryeducation.com/me/students",
 
     "wat_cortana": {
-        "enabled": true,
-        "navBar": true,
-        "appBar": true,
-        "settings": true,
-        "search": true
+        "enabled": false,
+        "navBar": false,
+        "appBar": false,
+        "settings": false,
+        "search": false
     },
 
     "wat_customScript": {
@@ -36,11 +36,7 @@
         "enableCaptureWindowOpen": true,
         "refreshOnModalClose": true,
         "rules": [
-            {
-                "pattern": "*player.discoveryeducation.com*",
-                "action": "modal", 
-                "hideCloseButton": false
-            }
+            
         ]
     },
 
@@ -65,7 +61,7 @@
     },
 
     "wat_share": {
-        "enabled": true,
+        "enabled": false,
         "showButton": true,
         "buttonText": "Share",
         "buttonSection": "global",
@@ -84,10 +80,16 @@
         "makeSticky": false,
         "buttons": [
             {
-                "label": "Settings",
-                "icon": "edit",
-                "action": "settings"
-            }
+                "label": "Switch View",
+                "icon": "calendar",
+                "action": "eval", 
+                "data": "toggleCalendarView()"
+            },
+			{
+				"label": "close",
+				"icon": "home",
+				"action": "eval"
+			}
         ]
     },
 
@@ -97,20 +99,16 @@
         "makeSticky": false,
         "buttons": [
             {
-                "label": "Back",
-                "icon": "back",
-                "action": "back"
-            },
-            {
-                "label": "home",
+                "label": "Welcome",
                 "icon": "home",
-                "action": "home"
+				"action": "eval",
+                "section": "showWelcome()"
             },
-            {
-                "label": "Switch View",
-                "icon": "calendar",
-                "action": "eval", 
-                "section": "toggleCalendarView()"
+			{
+                "label": "Assignments",
+                "icon": "page",
+				"action": "eval",
+                "section": "showAssignments();"
             },
             {
                 "label": "Log Out",
@@ -153,9 +151,9 @@
     },
 
     "wat_styles": {
-        "setViewport": false,
-        "targetWidth": "100px",
-        "targetHeight": "800px",
+        "setViewport": true,
+        "targetWidth": "425px",
+        "targetHeight": "",
         "suppressTouchAction": false,
         "extendedSplashScreenBackground": "#0073a3",
         "hiddenElements": [

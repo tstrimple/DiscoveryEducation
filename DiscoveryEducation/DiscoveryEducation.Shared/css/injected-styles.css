@@ -1,55 +1,88 @@
-﻿@media screen and (max-width: 500px){
-   @-ms-viewport
-   {
-      width:425px !important;
-   }
-
-   body, .bootstrapped .container, #student-take-content, #student-take-mid {
-     background:none !important;
-     width: 425px !important;
-     max-width: 100% !important;
-     margin: 0px 0px 0px 0px;
-     position: relative;
-     padding: 0px;
-     background-color: #fff;
-     box-shadow: 0 0 5px #777;
-     border-radius: 1px;
-   }
-
-   .support-left-nav-top, .support-left-nav, div#header-contents, nav.navbar, .container, #password, #username{
-       width: 100% !important;
-   }
-
-   div#footer-links, div#search-main, .view-switcher {
-       display: none !important;
-   }
-
-   #student-stage, #globalStage, #student-take-mid, .builderAssetList, #student-take-content .builderAssetList ul {
-       width: auto !important;
-   }
-
-   div#supportNav {
-       width: 20%;
-   }
-
-   div#supportContent {
-       width: 50%;
-   }
-
+﻿@-ms-viewport {
+    width: device-width !important;
 }
 
-#_fw_frame_rectangleContent, #featured-programs, #_fw_frame_tower, #footer, #footer-default, #footer-copyright, .banner-top, #header, #main-nav,
-#shell-outer, #footer-content, .shortcut tools-shortcuts, .shortcut services-shortcuts, #google_esf, #search-left, 
-.player-action-tabs clearfix, .player-meta text-shade, .player-actions btn-set clearfix, .video-list, .play-full-video-content on clearfix, #livefyre, 
- .tab1, .tab3, .tab4, .tab5, .tab6, .btn-toolbar, #playlist-bar, .pagination-wrapper, #assignments-toggle
-{
-   display:none !important;
+/* Removed Elements */
+#header-wrap, 
+.bootstrapped .nav-container,
+.theme-picker,
+.view-switcher,
+#assignments-toggle,
+#footer-links,
+.content-box-top,
+.content-box-bottom,
+#playlist-bar,
+#shell-outer,
+#footer-copyright,
+#assignments > table > thead > tr > th:nth-child(2),
+#assignments > table > tbody > tr > td:nth-child(2),
+#assignments > table > thead > tr > th:nth-child(4),
+#assignments > table > tbody > tr > td:nth-child(4),
+#tab2 > div.content-box > div.content-box-inner > div.toolbar > div.btn-toolbar {
+    display: none !important;
 }
 
-#scroll-content{
-   background-position-y:0px !important; 
+input {
+  width: 95% !important;
 }
 
-table {
-font-size: 10px !important;
+
+
+.bootstrapped .container,
+.outer-wrapper {
+    margin: 0px;
+    padding: 0px 0px 20px 0px;
+    width: auto;
+    box-shadow: none;
+    border-radius: 0px;
+    border: 0px;
+}
+
+#loginDiv {
+    padding: 0px 20px;
+}
+
+body {
+    min-width: 0px !important;
+    overflow-x: hidden;
+}
+
+html {
+    background: #FFF;
+}
+
+#scroll-content {
+	background: #FFF !important;
+}
+
+#de-content-wrapper,
+.outer-container {
+    padding: 0px !important;
+}
+
+.intro {
+    margin: 20px !important;
+}
+
+.content-box {
+    background: none !important;
+}
+
+.blog-item h3 {
+    text-align: left !important;
+}
+
+.post-publisher a {
+    display: block;
+}
+
+/*
+    Video Player Customization
+*/
+
+.lightbox-open-player {
+    display: none;
+}
+
+.video-container {
 }
