@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" StartPage="template/wat-wrapper.html">
-      <m2:VisualElements DisplayName="My Assignments Beta" Description="DEAssignmentsWAT" ForegroundText="light" BackgroundColor="#0073a3" Square150x150Logo="images\Logo.png" Square30x30Logo="images\SmallLogo.png">
+      <m2:VisualElements DisplayName="My Assignments Beta" Description="DEAssignmentsWAT" ForegroundText="light" BackgroundColor="#0073a3" Square150x150Logo="images\Logo-scale.png" Square30x30Logo="images\SmallLogo.png">
         <m2:DefaultTile Wide310x150Logo="images\widelogo.png" DefaultSize="wide310x150Logo" Square70x70Logo="images\Square70x70Logo.png" Square310x310Logo="images\Square310x310Logo.png">
         </m2:DefaultTile>
         <m2:SplashScreen Image="images\splashscreen.png" BackgroundColor="#0073a3" />
