@@ -1,3 +1,55 @@
-﻿body p {
+﻿@media screen and (max-width: 500px){
+   @-ms-viewport
+   {
+      width:425px !important;
+   }
 
+   body, .bootstrapped .container, #student-take-content, #student-take-mid {
+     background:none !important;
+     width: 425px !important;
+     max-width: 100% !important;
+     margin: 0px 0px 0px 0px;
+     position: relative;
+     padding: 0px;
+     background-color: #fff;
+     box-shadow: 0 0 5px #777;
+     border-radius: 1px;
+   }
+
+   .support-left-nav-top, .support-left-nav, div#header-contents, nav.navbar, .container, #password, #username{
+       width: 100% !important;
+   }
+
+   div#footer-links, div#search-main, .view-switcher {
+       display: none !important;
+   }
+
+   #student-stage, #globalStage, #student-take-mid, .builderAssetList, #student-take-content .builderAssetList ul {
+       width: auto !important;
+   }
+
+   div#supportNav {
+       width: 20%;
+   }
+
+   div#supportContent {
+       width: 50%;
+   }
+
+}
+
+#_fw_frame_rectangleContent, #featured-programs, #_fw_frame_tower, #footer, #footer-default, #footer-copyright, .banner-top, #header, #main-nav,
+#shell-outer, #footer-content, .shortcut tools-shortcuts, .shortcut services-shortcuts, #google_esf, #search-left, 
+.player-action-tabs clearfix, .player-meta text-shade, .player-actions btn-set clearfix, .video-list, .play-full-video-content on clearfix, #livefyre, 
+ .tab1, .tab3, .tab4, .tab5, .tab6, .btn-toolbar, #playlist-bar, .pagination-wrapper, #assignments-toggle
+{
+   display:none !important;
+}
+
+#scroll-content{
+   background-position-y:0px !important; 
+}
+
+table {
+font-size: 10px !important;
 }

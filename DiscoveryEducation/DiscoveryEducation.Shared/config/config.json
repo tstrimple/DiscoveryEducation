@@ -2,15 +2,181 @@
     "$schema": "/schema/schema-manifest.json",
     "start_url": "https://app.discoveryeducation.com/me/students",
 
+    "wat_cortana": {
+        "enabled": true,
+        "navBar": true,
+        "appBar": true,
+        "settings": true,
+        "search": true
+    },
+
     "wat_customScript": {
-        "scriptFiles._comment": "An array of custom script files stored within the app package that are injected into the DOM",
         "scriptFiles": [
             "injection-script-example.js"
         ]
     },
 
+    "wat_navigation": {
+        "hideOnPageBackButton": false,
+        "hideBackButtonOnMatch": [
+            "{baseURL}/Json#livetiles"
+        ],
+        "pageLoadingPartial": "/template/partials/page-loading.html"
+    },
+
+    "wat_errors": {
+        "showAlertOnError": false,
+        "alertMessage": "Sorry, but there was an error. It has been logged. Please contact us if the issue continues.",
+        "redirectToErrorPage": false,
+        "errorPageURL": "error-example.html"
+    },
+
+    "wat_redirects": {
+        "enabled": true,
+        "enableCaptureWindowOpen": true,
+        "refreshOnModalClose": true,
+        "rules": [
+            {
+                "pattern": "*player.discoveryeducation.com*",
+                "action": "modal", 
+                "hideCloseButton": false
+            }
+        ]
+    },
+
+    "wat_logging": {
+        "enabled": true,
+        "level": "log",
+        "disableWithoutDebugger": false,
+        "hideTagDisplay": true,
+        "ignoreTags": [
+            "winjs"
+        ],
+        "logErrorsForIgnoredTags": true,
+        "overrideConsoleMethods": true,
+        "disableConsoleLog": false,
+        "fileLog": {
+            "enabled": true,
+            "level": "info",
+            "filename": "logs\\wat-docs_%D.log",
+            "format": "%L on Line %l of %f\r\n%D %T: %M (%t)",
+            "maxLogFiles": 7
+        }
+    },
+
+    "wat_share": {
+        "enabled": true,
+        "showButton": true,
+        "buttonText": "Share",
+        "buttonSection": "global",
+        "title": "Look what I Discovered!",
+        "url": "{currentURL}",
+        "screenshot": true,
+        "message": "{url} shared with {appLink} for Windows Phone and Windows 8 Store apps."
+    },
+
+    "wat_geoLocation": {
+        "enabled": true
+    },
+
+    "wat_appBar": {
+        "enabled": true,
+        "makeSticky": false,
+        "buttons": [
+            {
+                "label": "Settings",
+                "icon": "edit",
+                "action": "settings"
+            }
+        ]
+    },
+
+    "wat_navBar": {
+        "enabled": true,
+        "maxRows": 2,
+        "makeSticky": false,
+        "buttons": [
+            {
+                "label": "Back",
+                "icon": "back",
+                "action": "back"
+            },
+            {
+                "label": "home",
+                "icon": "home",
+                "action": "home"
+            },
+            {
+                "label": "Switch View",
+                "icon": "calendar",
+                "action": "eval", 
+                "section": "toggleCalendarView()"
+            },
+            {
+                "label": "Log Out",
+                "icon": "people",
+                "action": "https://app.discoveryeducation.com/public:session/logout"
+            }
+        ]
+    },
+
+    "wat_livetile": {
+        "enabled": true,
+        "periodicUpdate": 1,
+        "enableQueue": true,
+        "tilePollFeed": ""
+    },
+
+    "wat_isroller": false,
+
+    "wat_settings": {
+        "enabled": true,
+        "privacyUrl": "http://www.discoveryeducation.com/aboutus/terms-of-use/websites.cfm",
+        "items": [
+            {
+                "title": "Support",
+                "page": "http://www.discoveryeducation.com/contact-us/",
+                "loadInApp": true
+            }
+        ]
+    },
+
+    "wat_header": {
+        "enabled": true,
+        "backgroundColor": "#0073a3",
+        "navDrawerBackgroundColor": "#1A2A30",
+        "logo": "/images/WideLogo.png",
+        "title": {
+            "enabled": false,
+            "displayOnHomePage": false
+        }
+    },
+
     "wat_styles": {
-        "customCssFile._comment": "This enables you to embed CSS styles which get inserted over the existing styles on your website. This is great for adjusting the style of the site when it is presented as an application. This can be used as an alterntive to the injected-styles.css.",
+        "setViewport": false,
+        "targetWidth": "100px",
+        "targetHeight": "800px",
+        "suppressTouchAction": false,
+        "extendedSplashScreenBackground": "#0073a3",
+        "hiddenElements": [
+        ],
+        "backButton": {
+            "borderColor": "#0C1417",
+            "color": "#FFFFFF"
+        },
+        "wrapperCssFile": "/css/wrapper-styles.css",
         "customCssFile": "/css/injected-styles.css"
-    }
+    },
+
+    "wat_secondaryPin": {
+        "enabled": true,
+        "buttonText": "Pin It!",
+        "tileTextTheme": "light",
+        "buttonSection": "global",
+        "squareImage": "/images/Square150x150Logo.png",
+        "wideImage": "/images/WideLogo.png"
+    },
+
+    "wat_styleTheme": "dark",
+    "wat_userAgent": "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_2_1 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5"
 }
