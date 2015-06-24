@@ -838,10 +838,12 @@
                     WAT.goToLocation(WAT.config.baseUrl);
                     break;
                 case "eval":
-                    var scriptString = "(function() { " + invokedItem.data.data + " })();";
-                    var exec = WAT.options.webView.invokeScriptAsync("eval", scriptString);
-                    exec.start();
-                    break;
+                   //OBrown modified to make Nav Menu code work
+                   var funcName = invokedItem.data.data != null ? invokedItem.data.data : invokedItem.data.section;
+                   var scriptString = "(function() { " + funcName + " })();";
+                   var exec = WAT.options.webView.invokeScriptAsync("eval", scriptString);
+                   exec.start();
+                   break;
                 case "back":
                     WAT.options.webView.goBack();
                     break;
