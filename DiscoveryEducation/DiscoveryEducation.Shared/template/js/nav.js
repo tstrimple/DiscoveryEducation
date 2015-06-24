@@ -31,6 +31,26 @@
 
     var _menuWidth = 300;
 
+    function isPortrait(orientation) {
+        switch (orientation) {
+            case Windows.Devices.Sensors.SimpleOrientation.rotated90DegreesCounterclockwise:
+            case Windows.Devices.Sensors.SimpleOrientation.rotated270DegreesCounterclockwise:
+                return false;
+                break;
+            default:
+                return true;
+                break;
+        }
+    }
+
+    function updateOrientation(orientation) {
+        if (!WAT.options.appBar || !WAT.options.appBar.winControl) {
+            return;
+        }
+
+        WAT.options.appBar.winControl.disabled = !isPortrait(orientation);
+    }
+
     // Public API
     var self = {
 
@@ -71,6 +91,11 @@
             };
             setupAppBar();
             setupNavBar();
+
+            this.orientationSensor = Windows.Devices.Sensors.SimpleOrientationSensor.getDefault();
+            this.orientationSensor.onorientationchanged = function (e) {
+                updateOrientation(e.orientation);
+            };
 
             WAT.options.webView.addEventListener("MSWebViewDOMContentLoaded", setStickyBits);
         },
@@ -216,10 +241,12 @@
             if (WAT.config.navBar && WAT.config.navBar.enabled && WAT.options.navBar) {
                 // As the winControl may not exist at this point, we ensure that this always work
                 WAT.options.navBar.setAttribute("data-win-options", "{ disabled : false }");
-
             }
+
             if (WAT.config.appBar && WAT.config.appBar.enabled && WAT.options.appBar) {
-                WAT.options.appBar.winControl.disabled = false;
+                if (isPortrait(this.orientationSensor.getCurrentOrientation())) {
+                    WAT.options.appBar.winControl.disabled = false;
+                }
             }
 
             splashScreen = null;

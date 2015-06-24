@@ -8,31 +8,8 @@ var phraseList = []; //cortana phrases
     var app = WinJS.Application;
     var activation = Windows.ApplicationModel.Activation;
 
-    function onOrientationChanged(e) {
-        debugger;
-        var enabled = false;
-        switch (e.orientation) {
-            case Windows.Devices.Sensors.SimpleOrientation.rotated90DegreesCounterclockwise:
-            case Windows.Devices.Sensors.SimpleOrientation.rotated270DegreesCounterclockwise:
-                enabled = false;
-                break;
-            default:
-                enabled = true;
-                break;
-        }
-
-        console.log('setting appbar state', enabled);
-        WAT.config.appBar.enabled = enabled;
-    }
-
     app.onactivated = function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {
-            var orientationSensor = Windows.Devices.Sensors.SimpleOrientationSensor.getDefault();
-            debugger;
-            orientationSensor.onorientationchanged = function () {
-                console.log('orientation changed');
-            }
-
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
                 // TODO: This application has been newly launched. Initialize
                 // your application here.
