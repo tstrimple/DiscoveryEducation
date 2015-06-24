@@ -12,7 +12,7 @@
 
     "wat_customScript": {
         "scriptFiles": [
-            "injection-script-example.js"
+            "js/injection-script.js"
         ]
     },
 
