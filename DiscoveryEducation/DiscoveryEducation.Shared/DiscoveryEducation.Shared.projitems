@@ -9,10 +9,14 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
     <Content Include="$(MSBuildThisFileDirectory)config\files.json" />
-    <Content Include="$(MSBuildThisFileDirectory)css\injected-styles.css" />
+    <Content Include="$(MSBuildThisFileDirectory)css\techbook2.css" />
+    <Content Include="$(MSBuildThisFileDirectory)css\students.css" />
+    <Content Include="$(MSBuildThisFileDirectory)css\all.css" />
     <Content Include="$(MSBuildThisFileDirectory)css\wrapper-styles.css" />
     <Content Include="$(MSBuildThisFileDirectory)error-example.html" />
-    <Content Include="$(MSBuildThisFileDirectory)js\injection-script.js" />
+    <Content Include="$(MSBuildThisFileDirectory)js\all.js" />
+    <Content Include="$(MSBuildThisFileDirectory)js\techbook2.js" />
+    <Content Include="$(MSBuildThisFileDirectory)js\students.js" />
     <Content Include="$(MSBuildThisFileDirectory)schema\schema-manifest.json" />
     <Content Include="$(MSBuildThisFileDirectory)template\css\base.css" />
     <Content Include="$(MSBuildThisFileDirectory)template\css\error.css" />

@@ -25,7 +25,7 @@
             if (WAT.config.styles.wrapperCssFile) {
                 setupWrapperCssFile();
             }
-            if (WAT.config.styles.customCssFile) {
+            if (WAT.config.styles.customCssFiles) {
                 getCustomCssFile();
             }
         }
@@ -117,51 +117,54 @@
         exec.start();
     };
 
+
+    // Private functions
+    function readCssAsync(filePath) {
+        var uri = new Windows.Foundation.Uri(filePath);
+        var inputStream = null;
+        var reader = null;
+        var size;
+
+        return Windows.Storage.StorageFile.getFileFromApplicationUriAsync(uri).then(function (script) {
+            return script.openAsync(Windows.Storage.FileAccessMode.read);
+        }).then(function (stream) {
+            size = stream.size;
+            inputStream = stream.getInputStreamAt(0);
+            reader = new Windows.Storage.Streams.DataReader(inputStream);
+
+            return reader.loadAsync(size);
+        }).then(function () {
+            var contents = reader.readString(size);
+            return contents;
+        });
+    }
+
     getCustomCssFile = function () {
-        var cssFile = "ms-appx://" + ((/^\//.test(WAT.config.styles.customCssFile)) ? "" : "/") + WAT.config.styles.customCssFile;
+        var webView = document.getElementById("main-view");
+        webView.addEventListener("MSWebViewDOMContentLoaded", function () {
+            for (var i = 0; i < WAT.config.styles.customCssFiles.length; i++) {
+                var cssFile = WAT.config.styles.customCssFiles[i];
+                if (!cssFile.match || webView.src.indexOf(cssFile.match) > -1) {
+                    (function (file) {
+                        readCssAsync("ms-appx://" + ((/^\//.test(file)) ? "" : "/") + file).then(function (css) {
+                            var exec, scriptString;
+                            logger.log("Loading custom css file from " + file);
+                            scriptString = "var cssFileString = '" + css.replace(/\r\n/gm, " ") + "';" +
+                                "var cssFileStyleEl = document.createElement('style');" +
+                                "document.body.appendChild(cssFileStyleEl);" +
+                                "cssFileStyleEl.innerHTML = cssFileString;";
 
-        logger.log("Getting custom css file from " + cssFile);
-
-        var url = new Windows.Foundation.Uri(cssFile);
-        Windows.Storage.StorageFile.getFileFromApplicationUriAsync(url)
-            .then(
-                customCssFileLoadHandler,
-                function (err) {
-                    // log this error, but let things proceed anyway
-                    logger.error("Error getting custom css file", err);
+                            exec = WAT.options.webView.invokeScriptAsync("eval", scriptString);
+                            exec.start();
+                        }, function (err) {
+                            logger.error("Error getting custom css file", err);
+                        });
+                    })(cssFile.file);
                 }
-            );
+            }
+        });
     };
-
-    customCssFileLoadHandler = function (file) {
-        Windows.Storage.FileIO.readTextAsync(file)
-            .then(
-                function (text) {
-                    customStylesFromFile = text;
-                    WAT.options.webView.addEventListener("MSWebViewDOMContentLoaded", loadCustomCssFileString);
-                },
-                function (err) {
-                    // log this error, but let things proceed anyway
-                    logger.warn("Error reading custom css file", err);
-                }
-            );
-    };
-
-    loadCustomCssFileString = function () {
-        var exec, scriptString;
-
-        logger.log("injecting styles: ", customStylesFromFile.replace(/\r\n/gm, " "));
-
-        scriptString = "var cssFileString = '" + customStylesFromFile.replace(/\r\n/gm, " ") + "';" +
-            "var cssFileStyleEl = document.createElement('style');" +
-            "document.body.appendChild(cssFileStyleEl);" +
-            "cssFileStyleEl.innerHTML = cssFileString;";
-
-        exec = WAT.options.webView.invokeScriptAsync("eval", scriptString);
-        exec.start();
-    };
-
-
+    
     // Module Registration
     WAT.registerModule("styles", self);
 
