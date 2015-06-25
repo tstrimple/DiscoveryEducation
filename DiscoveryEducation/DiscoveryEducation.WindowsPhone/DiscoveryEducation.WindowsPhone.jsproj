@@ -253,9 +253,15 @@
     <Content Include="images\share.contrast-black.png" />
     <Content Include="images\share.contrast-white.png" />
     <Content Include="images\share.png" />
+<<<<<<< HEAD
     <Content Include="images\Smalllogo.scale-100.png" />
     <Content Include="images\Smalllogo.scale-140.png" />
     <Content Include="images\Smalllogo.scale-240.png" />
+=======
+    <Content Include="images\SmallLogo.scale-100.png" />
+    <Content Include="images\SmallLogo.scale-140.png" />
+    <Content Include="images\SmallLogo.scale-240.png" />
+>>>>>>> origin/master
     <Content Include="images\SplashScreen.scale-100.png" />
     <Content Include="images\SplashScreen.scale-140.png" />
     <Content Include="images\SplashScreenRotated.scale-100.png" />
@@ -295,14 +301,14 @@
     <SDKReference Include="Microsoft.Phone.WinJS.2.1, Version=1.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WatExtensions\WatExtensions.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="AppPromo">
       <HintPath>$(SolutionDir)packages\AppPromo.1.0.0.9\lib\wpa81\AppPromo.winmd</HintPath>
       <IsWinMDFile>true</IsWinMDFile>
       <CopyLocal>True</CopyLocal>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WatExtensions\WatExtensions.csproj" />
   </ItemGroup>
   <Import Project="..\DiscoveryEducation.Shared\DiscoveryEducation.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />

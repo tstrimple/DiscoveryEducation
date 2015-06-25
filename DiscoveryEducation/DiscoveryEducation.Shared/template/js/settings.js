@@ -50,7 +50,7 @@
     };
 
     // Private methods
-    addSetting = function (applicationCommands, label, callback) {
+    addSetting = function (applicationCommands, id, label, callback) {
 
         // If Windows Phone, add as secondary command which will make it a menu item
         if (WAT.environment.isWindowsPhone) {
@@ -61,7 +61,7 @@
 
             var btn = document.createElement("button");
             btn.addEventListener("click", callback);
-            new WinJS.UI.AppBarCommand(btn, { label: label, section: "selection" });
+            new WinJS.UI.AppBarCommand(btn, { id: id, label: label, section: "selection" });
             WAT.options.appBar.appendChild(btn);
 
         // Otherwise, add to application commands
@@ -79,7 +79,7 @@
             WAT.config.settings.enabled &&
             WAT.config.settings.privacyUrl) {
             var privacy = rs.getString("privacy");
-            addSetting(applicationCommands, privacy.value, function () {
+            addSetting(applicationCommands, 'privacyButton', privacy.value, function () {
                 Windows.System.Launcher.launchUriAsync(new Windows.Foundation.Uri(WAT.config.settings.privacyUrl));
             });
         }
@@ -95,7 +95,7 @@
                     phraseList.push(item.title); //adding setting items to cortana phrase list
                 }
 
-                addSetting(applicationCommands, item.title,
+                addSetting(applicationCommands, item.id || '', item.title,
                             function () {
                                 if (item.loadInApp === true) {
                                     WAT.goToLocation(item.page);

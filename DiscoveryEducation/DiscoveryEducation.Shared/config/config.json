@@ -3,11 +3,11 @@
     "start_url": "https://app.discoveryeducation.com/me/students",
 
     "wat_cortana": {
-        "enabled": true,
-        "navBar": true,
-        "appBar": true,
-        "settings": true,
-        "search": true
+        "enabled": false,
+        "navBar": false,
+        "appBar": false,
+        "settings": false,
+        "search": false
     },
 
     "wat_customScript": {
@@ -36,11 +36,7 @@
         "enableCaptureWindowOpen": true,
         "refreshOnModalClose": true,
         "rules": [
-            {
-                "pattern": "*player.discoveryeducation.com*",
-                "action": "modal", 
-                "hideCloseButton": false
-            }
+            
         ]
     },
 
@@ -65,7 +61,7 @@
     },
 
     "wat_share": {
-        "enabled": true,
+        "enabled": false,
         "showButton": true,
         "buttonText": "Share",
         "buttonSection": "global",
@@ -84,9 +80,11 @@
         "makeSticky": false,
         "buttons": [
             {
-                "label": "Settings",
-                "icon": "edit",
-                "action": "settings"
+				"id": "switchviewButton",
+                "label": "Switch View",
+                "icon": "calendar",
+                "action": "eval", 
+                "data": "toggleCalendarView()"
             }
         ]
     },
@@ -97,20 +95,14 @@
         "makeSticky": false,
         "buttons": [
             {
-                "label": "Back",
-                "icon": "back",
-                "action": "back"
-            },
-            {
-                "label": "home",
+                "label": "Welcome",
                 "icon": "home",
-                "action": "home"
+				"action": "https://app.discoveryeducation.com/me/students#v=tab1"
             },
-            {
-                "label": "Switch View",
-                "icon": "calendar",
-                "action": "eval", 
-                "section": "toggleCalendarView()"
+			{
+                "label": "Assignments",
+                "icon": "page",
+				"action": "https://app.discoveryeducation.com/me/students#v=tab2"
             },
             {
                 "label": "Log Out",
@@ -134,6 +126,7 @@
         "privacyUrl": "http://www.discoveryeducation.com/aboutus/terms-of-use/websites.cfm",
         "items": [
             {
+				"id": "supportButton",
                 "title": "Support",
                 "page": "http://www.discoveryeducation.com/contact-us/",
                 "loadInApp": true
@@ -154,8 +147,8 @@
 
     "wat_styles": {
         "setViewport": false,
-        "targetWidth": "100px",
-        "targetHeight": "800px",
+        "targetWidth": "device-width",
+        "targetHeight": "",
         "suppressTouchAction": false,
         "extendedSplashScreenBackground": "#0073a3",
         "hiddenElements": [

@@ -186,7 +186,7 @@
 
         btn = document.createElement("button");
 
-        new WinJS.UI.AppBarCommand(btn, { label: buttonText, icon: "pin", section: section });
+        new WinJS.UI.AppBarCommand(btn, { id: "pinButton", label: buttonText, icon: "pin", section: section });
 
         btn.className = "win-disposable win-command win-global";
         btn.setAttribute("role", "menuitem");
@@ -197,6 +197,7 @@
     };
 
     pinHandler = function () {
+        debugger;
         var secondaryTile, selectionRect, squareLogoUri, wideLogoUri, wideLogoPath,
             options = (Windows.UI.StartScreen.TileOptions.showNameOnLogo | Windows.UI.StartScreen.TileOptions.showNameOnWideLogo),
             displayName = WAT.options.webView.documentTitle,
@@ -241,7 +242,6 @@
             Windows.UI.Popups.Placement.below
         );
     };
-
 
     // Module Registration
     WAT.registerModule("tiles", self);

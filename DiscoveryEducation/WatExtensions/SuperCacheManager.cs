@@ -4,7 +4,7 @@
     using WatExtensions.SuperCache;
     using WatExtensions.SuperCache.Config;
     using Windows.Foundation;
-    
+
     public static class SuperCacheManager
     {
         private static WebServer webServer;

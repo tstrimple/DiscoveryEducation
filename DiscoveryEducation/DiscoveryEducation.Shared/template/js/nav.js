@@ -16,7 +16,7 @@
         setupExtendedSplashScreen, updateSplashPositioning, updateExtendedSplashScreenStyles,
 	    configureRedirects, addRedirectRule, processOldRedirectFormat,
         redirectShowMessage, redirectPopout, redirectUrl,
-        loadWindowOpenSpy, loadWindowCloseSpy, handleWindowOpen, handleWindowClose, closeModalContent, 
+        loadWindowOpenSpy, loadWindowCloseSpy, handleCustomRequest, handleWindowOpen, handleWindowClose, closeModalContent, 
         splashScreenEl, splashScreenImageEl, splashLoadingEl, getUriParameter,
         navDrawerInit, returnToContent, toggleMenu, itemInvokedHandler, disableNavDrawer,
         afterProcessAllActions = [],
@@ -31,9 +31,29 @@
 
     var _menuWidth = 300;
 
+    function isPortrait(orientation) {
+        switch (orientation) {
+            case Windows.Devices.Sensors.SimpleOrientation.rotated90DegreesCounterclockwise:
+            case Windows.Devices.Sensors.SimpleOrientation.rotated270DegreesCounterclockwise:
+                return false;
+                break;
+            default:
+                return true;
+                break;
+        }
+    }
+
+    function updateOrientation(orientation) {
+        if (!WAT.options.appBar || !WAT.options.appBar.winControl) {
+            return;
+        }
+
+        WAT.options.appBar.winControl.disabled = !isPortrait(orientation);
+    }
+
     // Public API
     var self = {
-
+        switchViewCommand: null,
         start: function () {
             WAT.config.navigation = (WAT.config.navigation || {});
 
@@ -71,6 +91,13 @@
             };
             setupAppBar();
             setupNavBar();
+
+            this.orientationSensor = Windows.Devices.Sensors.SimpleOrientationSensor.getDefault();
+            if (this.orientationSensor) {
+                this.orientationSensor.onorientationchanged = function (e) {
+                    updateOrientation(e.orientation);
+                };
+            }
 
             WAT.options.webView.addEventListener("MSWebViewDOMContentLoaded", setStickyBits);
         },
@@ -216,10 +243,12 @@
             if (WAT.config.navBar && WAT.config.navBar.enabled && WAT.options.navBar) {
                 // As the winControl may not exist at this point, we ensure that this always work
                 WAT.options.navBar.setAttribute("data-win-options", "{ disabled : false }");
-
             }
+
             if (WAT.config.appBar && WAT.config.appBar.enabled && WAT.options.appBar) {
-                WAT.options.appBar.winControl.disabled = false;
+                if (!this.orientationSensor || isPortrait(this.orientationSensor.getCurrentOrientation())) {
+                    WAT.options.appBar.winControl.disabled = false;
+                }
             }
 
             splashScreen = null;
@@ -289,6 +318,7 @@
             WAT.options.dialogView.addEventListener("MSWebViewDOMContentLoaded", loadWindowCloseSpy);
             WAT.options.dialogView.addEventListener("MSWebViewNavigationStarting", dialogViewNavigationStarting);
 
+            WAT.options.webView.addEventListener("MSWebViewScriptNotify", handleCustomRequest);
             WAT.options.webView.addEventListener("MSWebViewScriptNotify", handleWindowOpen);
             //WAT.options.dialogView.addEventListener("MSWebViewScriptNotify", handleWindowClose);
             WAT.options.webView.addEventListener("MSWebViewFrameNavigationStarting", handleWindowOpen);
@@ -349,6 +379,24 @@
 
         exec = WAT.options.webView.invokeScriptAsync("eval", scriptString);
         exec.start();
+    };
+
+    handleCustomRequest = function (e) {
+        console.log('PROCESSING: ' + e.value);
+        switch(e.value) {
+            case "SHOWLISTICON":
+                self.switchViewCommand.icon = "list";
+                break;
+            case "SHOWCALENDARTICON":
+                self.switchViewCommand.icon = "calendar";
+                break;
+            case "SHOWSWITCHBUTTON":
+                WAT.options.appBar.winControl.showOnlyCommands(['switchviewButton', 'pinButton', 'privacyButton', 'supportButton']);
+                break;
+            case "HIDESWITCHBUTTON":
+                WAT.options.appBar.winControl.showOnlyCommands(['pinButton', 'privacyButton', 'supportButton']);
+                break;
+        }
     };
 
     handleWindowOpen = function (e) {
@@ -689,7 +737,11 @@
 
                 var section = (menuItem.section || "global");
 
-                new WinJS.UI.AppBarCommand(btn, { label: menuItem.label, icon: menuItem.icon, section: section });
+                var appbarCommand = new WinJS.UI.AppBarCommand(btn, { id: menuItem.id, label: menuItem.label, icon: menuItem.icon, section: section });
+
+                if (menuItem.label == "Switch View") {
+                    self.switchViewCommand = appbarCommand;
+                }
 
                 setButtonAction(btn, menuItem);
 
@@ -838,12 +890,10 @@
                     WAT.goToLocation(WAT.config.baseUrl);
                     break;
                 case "eval":
-                   //OBrown modified to make Nav Menu code work
-                   var funcName = invokedItem.data.data != null ? invokedItem.data.data : invokedItem.data.section;
-                   var scriptString = "(function() { " + funcName + " })();";
-                   var exec = WAT.options.webView.invokeScriptAsync("eval", scriptString);
-                   exec.start();
-                   break;
+                    var scriptString = "(function() { " + invokedItem.data.data + " })();";
+                    var exec = WAT.options.webView.invokeScriptAsync("eval", scriptString);
+                    exec.start();
+                    break;
                 case "back":
                     WAT.options.webView.goBack();
                     break;
