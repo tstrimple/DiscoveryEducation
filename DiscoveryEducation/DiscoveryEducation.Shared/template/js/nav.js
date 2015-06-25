@@ -960,6 +960,7 @@
             options = { label: menuItem.label, icon: menuItem.icon, splitButton: hasChildren };
 
         btn.setAttribute("role", "menuitem");
+        btn.setAttribute("class", "navbar-item");
 
         new WinJS.UI.NavBarCommand(btn, options);
 

@@ -1,4 +1,25 @@
-﻿.modal-content {
+﻿.win-navbarcontainer-horizontal .win-navbarcontainer-surface {
+    display: block !important;
+    text-align: right;
+}
+
+#navContainer {
+    background-color: transparent;
+}
+
+.win-navbarcontainer-horizontal {
+    width: calc(100% - 240px);
+    padding-left: 240px;
+    padding-top: 30px;
+    text-align: right !important;
+    display: block;
+}
+
+.navbar-item {
+    display: inline-block;
+}
+
+.modal-content {
     width: 100%;
     height: 100%;
     margin: 0px auto;
