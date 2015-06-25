@@ -382,7 +382,6 @@
     };
 
     handleCustomRequest = function (e) {
-        console.log('PROCESSING: ' + e.value);
         switch(e.value) {
             case "SHOWLISTICON":
                 self.switchViewCommand.icon = "list";
