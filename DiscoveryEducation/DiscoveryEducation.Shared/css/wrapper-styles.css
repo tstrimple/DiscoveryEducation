@@ -64,7 +64,8 @@
         }
 
             .content .header .logoarea #logo {
-                height: 75px;
+                height: 105px;
+                width: auto;
             }
 
         .content .header .titlearea {
