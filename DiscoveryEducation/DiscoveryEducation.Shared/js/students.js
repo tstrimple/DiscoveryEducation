@@ -2,21 +2,26 @@
 var msViewportStyle = document.createElement('style');
 msViewportStyle.id = 'ms-viewport';
 
-msViewportStyle.appendChild(
-  document.createTextNode(
-    '@-ms-viewport{width:device-width!important;zoom-user:fixed;max-zoom:1;min-zoom:1;}'
-  )
-);
+var viewPortString = '@-ms-viewport { width: device-width !important; }';
+if (window.innerWidth > 990) {
+    viewPortString = '@-ms-viewport { width: 1024px !important; }';
+}
+
+console.log('setting viewport ' + viewPortString);
+msViewportStyle.appendChild(document.createTextNode(viewPortString));
 document.getElementsByTagName('head')[0].appendChild(msViewportStyle);
 
 function updateDeviceWidth() {
-    var width = $(window).width();
+    var width = window.innerWidth;
+    console.log('setting #container width ' + width);
+    $('#container').width(width);
+
     if (width > 990) {
         width = 990;
     }
 
-    console.log('setting #container width' + width);
-    $('#container').width(width);
+    console.log('setting .bootstrapped .container width ' + width);
+    $('.bootstrapped .container').width(width);
 }
 
 function toggleCalendarView() {
@@ -31,7 +36,13 @@ function toggleCalendarView() {
 }
 
 $(document).ready(function () {
-    $(window).resize(updateDeviceWidth);
+    var resizeTimeout = null;
+    $(window).resize(function () {
+        if (resizeTimeout) {
+            clearTimeout(resizeTimeout);
+        }
+        resizeTimeout = setTimeout(updateDeviceWidth, 500);
+    });
     updateDeviceWidth();
 
     $(window).bind('hashchange', function (e) {

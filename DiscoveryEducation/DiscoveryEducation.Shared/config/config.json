@@ -14,7 +14,8 @@
         "scriptFiles": [
             { "file": "js/all.js" },
 			{ "match": "/me/students", "file": "js/students.js" },
-			{ "match": "/techbook2", "file": "js/techbook2.js" }
+			{ "match": "/techbook2", "file": "js/techbook2.js" },
+			{ "match": "/public:session", "file": "js/login.js"}
         ]
     },
 
@@ -163,7 +164,8 @@
         "customCssFiles": [
 			{"file": "/css/all.css"},
 			{"match": "/me/students", "file": "/css/students.css"},
-			{"match": "/techbook2", "file": "/css/techbook2.css"}
+			{"match": "/techbook2", "file": "/css/techbook2.css"},
+			{"match": "/public:session", "file": "/css/login.css"}
 		]
     },
 

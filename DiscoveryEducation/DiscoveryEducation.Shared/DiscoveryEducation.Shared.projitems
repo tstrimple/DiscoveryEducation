@@ -9,11 +9,13 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
     <Content Include="$(MSBuildThisFileDirectory)config\files.json" />
+    <Content Include="$(MSBuildThisFileDirectory)css\login.css" />
     <Content Include="$(MSBuildThisFileDirectory)css\techbook2.css" />
     <Content Include="$(MSBuildThisFileDirectory)css\students.css" />
     <Content Include="$(MSBuildThisFileDirectory)css\all.css" />
     <Content Include="$(MSBuildThisFileDirectory)css\wrapper-styles.css" />
     <Content Include="$(MSBuildThisFileDirectory)error-example.html" />
+    <Content Include="$(MSBuildThisFileDirectory)js\login.js" />
     <Content Include="$(MSBuildThisFileDirectory)js\all.js" />
     <Content Include="$(MSBuildThisFileDirectory)js\techbook2.js" />
     <Content Include="$(MSBuildThisFileDirectory)js\students.js" />
