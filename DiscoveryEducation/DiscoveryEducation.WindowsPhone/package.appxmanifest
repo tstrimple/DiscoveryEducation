@@ -33,12 +33,4 @@
   <build:Metadata>
     <build:Item Name="Blend" Version="12.0.50716.0" />
   </build:Metadata>
-  <Extensions>
-    <Extension Category="windows.activatableClass.inProcessServer">
-      <InProcessServer>
-        <Path>WatExtensions.winmd</Path>
-        <ActivatableClass ActivatableClassId="WatExtensions.SuperCacheManager" ThreadingModel="both" />
-      </InProcessServer>
-    </Extension>
-  </Extensions>
 </Package>
