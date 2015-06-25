@@ -1,0 +1,22 @@
+﻿@-ms-viewport {
+    width: device-width !important;
+}
+
+body {
+    background: none;
+}
+
+#footer-copyright,
+#shell {
+    display: none;
+}
+
+.outer-wrapper {
+    padding: 0px;
+}
+
+.de-public-container {
+	border-radius: 0px;
+	box-shadow: none;
+    border: none;
+}

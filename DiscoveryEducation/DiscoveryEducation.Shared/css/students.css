@@ -1,165 +1,86 @@
-﻿
-#container {
-    width: auto !important;
-}
-
-@media only screen and (max-width : 480px) {
-    .ellipsis,
-    #tb-content-top,
-    .tb-tab-full,
-    #tb-header-container,
-    #assignments > table > thead > tr > th:nth-child(2),
-    #assignments > table > tbody > tr > td:nth-child(2),
-    #assignments > table > thead > tr > th:nth-child(4),
-    #assignments > table > tbody > tr > td:nth-child(4),
-    #tb-breadcrumbs {
-        display: none;
-    }
-
-    .tb-tab-inner {
-        padding: 0px;
-        margin: 16px 8px;
-    }
-
-    #tb-content-body {
-        margin: 0px;
-    }
-
-    .cmrp-left,
-    .cmrp-right,
-    a.cit-explore-btn,
-    .cit-explore-btn span, 
-    .view-arrow,
-    .next-cit{
-        float: none;
-    }
-
-    .cmrp-right {
-        margin-top: 40px;
-    }
-
-    #tb-content-body {
-        top: 0;
-    }
-
-    .tb-tab-toolbar {
-        border: none;
-    }
-
-    #scroll-content {
-		background: #FFF !important;
-    }
-}
-
-#scroll-content {
-    background-position: center 0px !important;
-}
-
-.elaborate-asset-wrap {
-    width: auto;
-}
-
-.cmrp-left .cmrp-copy-view
-.cmrp-right .cmrp-copy-view {
-    width: auto;
-    max-width: 550px;
-    background: none;
-}
-
-#de-content,
-.elaborate-asset-wrap,
-.cmrp-left .cmrp-copy-view, 
-.cmrp-right .cmrp-copy-view {
-    width: auto;
-    max-width: 990px;
-    background: none;
-}
-
-
-/* Removed Elements */
-.tb-tab-toolbar-btns,
-#mini-toolbar,
-#tb-global-nav,
-#mark-complete-placeholder,
-#mark-complete-wrap,
-#header-wrap, 
-.bootstrapped .nav-container,
-.theme-picker,
-.view-switcher,
-#assignments-toggle,
-#footer-links,
-.content-box-top,
-.content-box-bottom,
-#playlist-bar,
-#shell-outer,
-#footer-copyright,
-#tab2 > div.content-box > div.content-box-inner > div.toolbar > div.btn-toolbar {
-    display: none !important;
-}
-
-html {
-    background-color: #FFF000;
-}
-
-input {
-    width: 95% !important;
-}
-
-.bootstrapped .container,
-.outer-wrapper {
-    margin: 0px;
-    padding: 0px 0px 20px 0px;
-    width: auto;
-    box-shadow: none;
-    border-radius: 0px;
-    border: 0px;
-}
-
-.bootstrapped .container {
-    margin: 0px auto;
-}
-
-#loginDiv {
-    padding: 0px 20px;
+﻿html, body {
+    -ms-overflow-style: none !important;
 }
 
 body {
-    display: table;
     min-width: 0px !important;
 }
 
-html {
-    background: #FFF;
-}
-
-#de-content-wrapper,
-.outer-container {
-    padding: 0px !important;
-}
-
-.intro {
-    margin: 20px !important;
-}
-
-.content-box {
-    background: none !important;
-}
-
-.blog-item h3 {
+.blog-item .span8 {
     text-align: left !important;
 }
 
-.post-publisher a {
-    display: block;
+#footer-links,
+#header-wrap,
+.nav-container,
+.view-switcher,
+.btn-toolbar,
+.intro,
+#assignments-toggle,
+#playlist-bar {
+	display: none !important;
 }
 
-/*
-    Video Player Customization
-*/
-
-.lightbox-open-player {
-    display: none;
+#container {
+    background-color: #FFF;
 }
 
-.video-container {
+.bootstrapped .theme-picker {
+    top: 0px;
+}
+
+#de-content-wrapper, 
+.bootstrapped .outer-container {
+	padding: 0px;    
+}
+
+.bootstrapped .container {
+    position: relative;
+    width: auto;
+    padding: 0px;
+    margin: 0px auto;
+    box-shadow: none;
+	border-radius: 0px;
+}
+
+.fc-border-separate td {
+    border: 1px solid #DDD;
+}
+
+table.fc-border-separate {
+    border-collapse: collapse !important;
+}
+
+#scroll-content {
+    background-position-y: 0px !important;
+}
+
+@media screen and (max-width: 990px) {
+    .theme-picker {
+		display: none;
+	}
+    #scroll-content {
+		background: none !important;
+    }
+
+}
+
+@media screen and (max-width: 700px) { 
+    #assignments > table > thead > tr > th:nth-child(2),
+    #assignments > table > tbody > tr > td:nth-child(2) {
+		display: none !important;
+	}
+    
+    .filter select {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 480px) { 
+    #assignments > table > thead > tr > th:nth-child(4),
+    #assignments > table > tbody > tr > td:nth-child(4),
+    #assignments > table > thead > tr > th:nth-child(5),
+    #assignments > table > tbody > tr > td:nth-child(5) {
+		display: none !important;
+	}
 }

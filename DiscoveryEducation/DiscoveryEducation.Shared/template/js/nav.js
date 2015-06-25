@@ -382,7 +382,6 @@
     };
 
     handleCustomRequest = function (e) {
-        console.log('PROCESSING: ' + e.value);
         switch(e.value) {
             case "SHOWLISTICON":
                 self.switchViewCommand.icon = "list";
@@ -961,6 +960,7 @@
             options = { label: menuItem.label, icon: menuItem.icon, splitButton: hasChildren };
 
         btn.setAttribute("role", "menuitem");
+        btn.setAttribute("class", "navbar-item");
 
         new WinJS.UI.NavBarCommand(btn, options);
 

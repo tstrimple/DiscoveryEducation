@@ -197,7 +197,6 @@
     };
 
     pinHandler = function () {
-        debugger;
         var secondaryTile, selectionRect, squareLogoUri, wideLogoUri, wideLogoPath,
             options = (Windows.UI.StartScreen.TileOptions.showNameOnLogo | Windows.UI.StartScreen.TileOptions.showNameOnWideLogo),
             displayName = WAT.options.webView.documentTitle,

@@ -149,10 +149,10 @@
                         readCssAsync("ms-appx://" + ((/^\//.test(file)) ? "" : "/") + file).then(function (css) {
                             var exec, scriptString;
                             logger.log("Loading custom css file from " + file);
-                            scriptString = "var cssFileString = '" + css.replace(/\r\n/gm, " ") + "';" +
+                            scriptString = "var css = '" + css.replace(/\r\n/gm, " ") + "';" +
                                 "var cssFileStyleEl = document.createElement('style');" +
                                 "document.body.appendChild(cssFileStyleEl);" +
-                                "cssFileStyleEl.innerHTML = cssFileString;";
+                                "cssFileStyleEl.innerHTML = css;";
 
                             exec = WAT.options.webView.invokeScriptAsync("eval", scriptString);
                             exec.start();
