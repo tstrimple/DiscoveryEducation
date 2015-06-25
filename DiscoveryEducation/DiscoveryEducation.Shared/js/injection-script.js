@@ -1,19 +1,17 @@
-﻿function updateViewport() {
-    var viewportWidth = $(window).width();
-    var viewportHeight = $(window).height();
+﻿
+function updateViewport() {
+    var width = $(window).width();
+    
+    $('meta[name=viewport]').attr('content', 'width=device-width, initial-scale=1, user-scalable=no');
 
-    setContainerWidth(viewportWidth);
-    setVideoSize(viewportWidth, viewportHeight);
-}
+    if (width > 990) {
+        width = 990;
+    }
 
-function setContainerWidth(width) {
     $('.container').width(width);
+    $('#tb-content').width(width);
 }
 
-function setVideoSize(width, height) {
-   // $('.container').width(400);
-   // $('.container').height(300);
-}
 
 $(document).ready(function () {
     updateViewport();
@@ -23,6 +21,7 @@ $(document).ready(function () {
         window.external.notify('HIDESWITCHBUTTON');
     }
 });
+
 $(window).resize(updateViewport);
 
 function toggleCalendarView() {
@@ -38,10 +37,12 @@ function toggleCalendarView() {
 
 function showWelcome() {
     window.external.notify('HIDESWITCHBUTTON');
+    document.title = 'Welcome';
     $('a.tabnav.tab1')[0].click();
 }
 
 function showAssignments() {
     window.external.notify('SHOWSWITCHBUTTON');
+    document.title = 'Assignments';
     $('a.tabnav.tab2')[0].click();
 }

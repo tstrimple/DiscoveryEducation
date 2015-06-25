@@ -382,6 +382,7 @@
     };
 
     handleCustomRequest = function (e) {
+        console.log('PROCESSING: ' + e.value);
         switch(e.value) {
             case "SHOWLISTICON":
                 self.switchViewCommand.icon = "list";
@@ -390,10 +391,10 @@
                 self.switchViewCommand.icon = "calendar";
                 break;
             case "SHOWSWITCHBUTTON":
-                WAT.options.appBar.winControl.showOnlyCommands(['switchviewButton', 'pinButton', 'shareButton']);
+                WAT.options.appBar.winControl.showOnlyCommands(['switchviewButton', 'pinButton', 'privacyButton', 'supportButton']);
                 break;
             case "HIDESWITCHBUTTON":
-                WAT.options.appBar.winControl.showOnlyCommands(['pinButton', 'shareButton']);
+                WAT.options.appBar.winControl.showOnlyCommands(['pinButton', 'privacyButton', 'supportButton']);
                 break;
         }
     };

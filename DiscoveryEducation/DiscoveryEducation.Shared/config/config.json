@@ -97,14 +97,12 @@
             {
                 "label": "Welcome",
                 "icon": "home",
-				"action": "eval",
-                "data": "showWelcome()"
+				"action": "https://app.discoveryeducation.com/me/students#v=tab1"
             },
 			{
                 "label": "Assignments",
                 "icon": "page",
-				"action": "eval",
-                "data": "showAssignments();"
+				"action": "https://app.discoveryeducation.com/me/students#v=tab2"
             },
             {
                 "label": "Log Out",
@@ -128,6 +126,7 @@
         "privacyUrl": "http://www.discoveryeducation.com/aboutus/terms-of-use/websites.cfm",
         "items": [
             {
+				"id": "supportButton",
                 "title": "Support",
                 "page": "http://www.discoveryeducation.com/contact-us/",
                 "loadInApp": true
@@ -147,8 +146,8 @@
     },
 
     "wat_styles": {
-        "setViewport": true,
-        "targetWidth": "425px",
+        "setViewport": false,
+        "targetWidth": "device-width",
         "targetHeight": "",
         "suppressTouchAction": false,
         "extendedSplashScreenBackground": "#0073a3",
@@ -163,7 +162,7 @@
     },
 
     "wat_secondaryPin": {
-        "enabled": false,
+        "enabled": true,
         "buttonText": "Pin It!",
         "tileTextTheme": "light",
         "buttonSection": "global",
