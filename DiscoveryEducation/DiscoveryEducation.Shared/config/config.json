@@ -61,7 +61,7 @@
     },
 
     "wat_share": {
-        "enabled": true,
+        "enabled": false,
         "showButton": true,
         "buttonText": "Share",
         "buttonSection": "global",
@@ -163,7 +163,7 @@
     },
 
     "wat_secondaryPin": {
-        "enabled": true,
+        "enabled": false,
         "buttonText": "Pin It!",
         "tileTextTheme": "light",
         "buttonSection": "global",

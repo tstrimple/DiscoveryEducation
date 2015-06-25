@@ -156,6 +156,7 @@
             currentURL = WAT.config.share.url.replace("{currentURL}", shareUrl),
             html = WAT.config.share.message;
 
+
         var displayName = (WAT.config.displayName || "");
         var currentApp = Windows.ApplicationModel.Store.CurrentApp;
         var appUri;
