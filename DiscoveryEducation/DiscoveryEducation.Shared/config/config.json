@@ -12,7 +12,9 @@
 
     "wat_customScript": {
         "scriptFiles": [
-            "js/injection-script.js"
+            { "file": "js/all.js" },
+			{ "match": "/me/students", "file": "js/students.js" },
+			{ "match": "/techbook2", "file": "js/techbook2.js" }
         ]
     },
 
@@ -36,7 +38,7 @@
         "enableCaptureWindowOpen": true,
         "refreshOnModalClose": true,
         "rules": [
-            
+   
         ]
     },
 
@@ -158,7 +160,11 @@
             "color": "#FFFFFF"
         },
         "wrapperCssFile": "/css/wrapper-styles.css",
-        "customCssFile": "/css/injected-styles.css"
+        "customCssFiles": [
+			{"file": "/css/all.css"},
+			{"match": "/me/students", "file": "/css/students.css"},
+			{"match": "/techbook2", "file": "/css/techbook2.css"}
+		]
     },
 
     "wat_secondaryPin": {
