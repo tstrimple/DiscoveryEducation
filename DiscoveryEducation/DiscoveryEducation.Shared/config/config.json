@@ -61,7 +61,7 @@
     },
 
     "wat_share": {
-        "enabled": false,
+        "enabled": true,
         "showButton": true,
         "buttonText": "Share",
         "buttonSection": "global",
@@ -80,16 +80,12 @@
         "makeSticky": false,
         "buttons": [
             {
+				"id": "switchviewButton",
                 "label": "Switch View",
                 "icon": "calendar",
                 "action": "eval", 
                 "data": "toggleCalendarView()"
-            },
-			{
-				"label": "close",
-				"icon": "home",
-				"action": "eval"
-			}
+            }
         ]
     },
 

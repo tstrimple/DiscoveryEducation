@@ -16,7 +16,7 @@
         setupExtendedSplashScreen, updateSplashPositioning, updateExtendedSplashScreenStyles,
 	    configureRedirects, addRedirectRule, processOldRedirectFormat,
         redirectShowMessage, redirectPopout, redirectUrl,
-        loadWindowOpenSpy, loadWindowCloseSpy, handleWindowOpen, handleWindowClose, closeModalContent, 
+        loadWindowOpenSpy, loadWindowCloseSpy, handleCustomRequest, handleWindowOpen, handleWindowClose, closeModalContent, 
         splashScreenEl, splashScreenImageEl, splashLoadingEl, getUriParameter,
         navDrawerInit, returnToContent, toggleMenu, itemInvokedHandler, disableNavDrawer,
         afterProcessAllActions = [],
@@ -53,7 +53,7 @@
 
     // Public API
     var self = {
-
+        switchViewCommand: null,
         start: function () {
             WAT.config.navigation = (WAT.config.navigation || {});
 
@@ -318,6 +318,7 @@
             WAT.options.dialogView.addEventListener("MSWebViewDOMContentLoaded", loadWindowCloseSpy);
             WAT.options.dialogView.addEventListener("MSWebViewNavigationStarting", dialogViewNavigationStarting);
 
+            WAT.options.webView.addEventListener("MSWebViewScriptNotify", handleCustomRequest);
             WAT.options.webView.addEventListener("MSWebViewScriptNotify", handleWindowOpen);
             //WAT.options.dialogView.addEventListener("MSWebViewScriptNotify", handleWindowClose);
             WAT.options.webView.addEventListener("MSWebViewFrameNavigationStarting", handleWindowOpen);
@@ -378,6 +379,23 @@
 
         exec = WAT.options.webView.invokeScriptAsync("eval", scriptString);
         exec.start();
+    };
+
+    handleCustomRequest = function (e) {
+        switch(e.value) {
+            case "SHOWLISTICON":
+                self.switchViewCommand.icon = "list";
+                break;
+            case "SHOWCALENDARTICON":
+                self.switchViewCommand.icon = "calendar";
+                break;
+            case "SHOWSWITCHBUTTON":
+                WAT.options.appBar.winControl.showOnlyCommands(['switchviewButton', 'pinButton', 'shareButton']);
+                break;
+            case "HIDESWITCHBUTTON":
+                WAT.options.appBar.winControl.showOnlyCommands(['pinButton', 'shareButton']);
+                break;
+        }
     };
 
     handleWindowOpen = function (e) {
@@ -718,7 +736,11 @@
 
                 var section = (menuItem.section || "global");
 
-                new WinJS.UI.AppBarCommand(btn, { label: menuItem.label, icon: menuItem.icon, section: section });
+                var appbarCommand = new WinJS.UI.AppBarCommand(btn, { id: menuItem.id, label: menuItem.label, icon: menuItem.icon, section: section });
+
+                if (menuItem.label == "Switch View") {
+                    self.switchViewCommand = appbarCommand;
+                }
 
                 setButtonAction(btn, menuItem);
 

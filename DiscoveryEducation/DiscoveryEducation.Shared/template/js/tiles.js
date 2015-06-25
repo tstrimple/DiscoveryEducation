@@ -186,7 +186,7 @@
 
         btn = document.createElement("button");
 
-        new WinJS.UI.AppBarCommand(btn, { label: buttonText, icon: "pin", section: section });
+        new WinJS.UI.AppBarCommand(btn, { id: "pinButton", label: buttonText, icon: "pin", section: section });
 
         btn.className = "win-disposable win-command win-global";
         btn.setAttribute("role", "menuitem");
